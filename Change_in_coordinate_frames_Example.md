@@ -34,22 +34,21 @@ We create the local-to-global transformation matrices for each local frame.
 
 1. Transformation ${\mathcal F}\{1\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{01}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{1\}$ w.r.t. frame ${\mathcal F}\{0\}$ which is the global frame. The transformation matrix is given by:
 
-   $$
-   \begin{align}
-      T_{01}=
-      R_{\theta} = 
-      \begin{bmatrix}
-          R_{01}  & {\bf t}_{01} \\
-          {\bf 0} &  1
-      \end{bmatrix} 
-      =
-      \begin{bmatrix}
-            1 & 0 & 8 \\
-            0 & 1 & 9 \\
-            0 & 0 & 1
-      \end{bmatrix}.
-    \end{align}
-   $$
+$$
+\begin{align}
+   T_{01}=
+   R_{\theta} = 
+   \begin{bmatrix}
+       R_{01}  & {\bf t}_{01} \\
+       {\bf 0} &  1
+   \end{bmatrix} 
+   \begin{bmatrix}
+         1 & 0 & 8 \\
+         0 & 1 & 9 \\
+         0 & 0 & 1
+   \end{bmatrix}.
+ \end{align}
+$$
 
 
 $$
