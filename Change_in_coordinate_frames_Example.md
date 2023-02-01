@@ -34,9 +34,27 @@ We create the local-to-global transformation matrices for each local frame.
 
 1. Transformation ${\mathcal F}\{1\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{01}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{1\}$ w.r.t. frame ${\mathcal F}\{0\}$ which is the global frame. The transformation matrix is given by:
 
+   $$
+   \begin{align}
+      T_{01}=
+      R_{\theta} = 
+      \begin{bmatrix}
+          R_{01}  & {\bf t}_{01} \\
+          {\bf 0} &  1
+      \end{bmatrix} 
+      =
+      \begin{bmatrix}
+            1 & 0 & 8 \\
+            0 & 1 & 9 \\
+            0 & 0 & 1
+      \end{bmatrix}.
+    \end{align}
+   $$
+
+
 $$
 \begin{align}
- T_{01} =  
+ T_{01}=
  \begin{bmatrix}
     R_{01} & {\bf t}_{01} \\
     {\bf 0} &  1
@@ -71,8 +89,6 @@ $$
 $$
 
 
-$$
-$$
 
 
 There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
@@ -82,6 +98,7 @@ There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{
 We now build the rotation matrices that will govern the motions of the points  ${\bf p}$ and  ${\bf q}$  in their local coordinate systems. 
 
 1. The rotation of blue circle about its local origin:
+
    $$
    \begin{align}
    	R_{\theta} = 
@@ -93,6 +110,8 @@ We now build the rotation matrices that will govern the motions of the points  $
    $$
 
 2. The rotation of pink circle about its local origin:
+
+
    $$
    \begin{align}
    	R_{\phi} = 
@@ -106,6 +125,7 @@ We now build the rotation matrices that will govern the motions of the points  $
 ### Numerical examples
 
 Now, let's try to rotate the points to see how the whole works. First, we can rotate the blue circle by an angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{\{1\}} = (5,0)^\mathsf{T}$ in local coordinates (See measurements in the diagram). We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
+
 $$
 \begin{align}
 	\tilde{\bf p}^\prime_{\{1\}} 
@@ -118,6 +138,7 @@ $$
  \end{align}
 $$
 Note that the rotated point  $\tilde{\bf p}^\prime_{\{1\}}$ is written in terms of its local coordinate system (i.e., frame ${\mathcal F}\{1\}$ ). As a result, the rotated point will not be plotted at its expected location when using library functions such as `plot(x,y)`. Library plotting functions use global (world) coordinates, not local ones. Thus, prior to plotting the rotated point, we must convert its coordinates to global coordinates, i.e.: 
+
 $$
 \begin{align}
 	\tilde{\bf p}^\prime_{\{0\}} &= {T}_{01}\tilde{\bf p}^\prime_{\{1\}}, \notag \\ \notag\\
@@ -142,7 +163,9 @@ $$
   \end{bmatrix}_{\{1\}}.
  \end{align}
 $$
+
 Numerically, the global representation of the rotation of $\tilde{\bf p}_{\{1\}} = (5,0,1)^\mathsf{T}$ by an angle angle $\theta = \pi/4$ around point $A$ is:
+
 $$
 \begin{align}
   \begin{bmatrix}    
@@ -174,9 +197,11 @@ $$
   \end{bmatrix}_{\{0\}}, 
 \end{align}
 $$
+
 which are the expected coordinates of the rotated point's position when plotted. 
 
 To rotate the pink circle by an angle $\phi$ around the circles' local frame, we apply a local rotation to ${\bf q}_{\{2\}} = (2,0)^\mathsf{T}$, in local coordinates. Here, we use the transformation matrix that converts from frame ${\mathcal F}\{2\}$ to frame ${\mathcal F}\{0\}$, i.e., $T_{02}$. The equation is given by:  
+
 $$
 \begin{align}
 	\tilde{\bf q}^\prime_{\{0\}} &= {T}_{02}\tilde{\bf q}^\prime_{\{2\}}, \notag \\ \notag\\
@@ -201,7 +226,9 @@ $$
   \end{bmatrix}_{\{2\}}.
  \end{align}
 $$
+
 After a local rotation by an angle $\phi = \pi/3$ around point $B$, followed by the change-of-frame transformation, the global coordinates of $\tilde{\bf q}_{\{2\}} = (2,0,1)^\mathsf{T}$ are:
+
 $$
 \begin{align}
   \begin{bmatrix}    
@@ -232,4 +259,5 @@ $$
   \end{bmatrix}_{\{0\}}, 
 \end{align}
 $$
+
 which are the expected coordinates of the rotated point's position when plotted. 
