@@ -31,7 +31,7 @@ Our first step is to choose the best locations and orientations of local coordin
 
 In this choice of configuration, all local frames are just translated with respect to the world-coordinate frame (i.e., there is no rotation between the frames). Depending on the application, the local frames may also be rotated with respect to the global frame and, sometimes, they also rotated with respect to one another. 
 
-#####**Step 2**: Create the local-to-global transformation matrices
+### Step 2: Create the local-to-global transformation matrices
 
 We create the local-to-global transformation matrices for each local frame. 
 
@@ -75,7 +75,7 @@ $$
 
 There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
-#####**Step 3:**  Create the matrices of the local transformations
+### Step 3: Create the matrices of the local transformations
 
 We now build the rotation matrices that will govern the motions of the points  ${\bf p}$ and  ${\bf q}$  in their local coordinate systems. 
 
@@ -101,7 +101,7 @@ We now build the rotation matrices that will govern the motions of the points  $
     \end{align}
    $$
 
-#####Numerical examples
+### Numerical examples
 
 Now, let's try to rotate the points to see how the whole works. First, we can rotate the blue circle by an angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{\{1\}} = (5,0)^\mathsf{T}$ in local coordinates (See measurements in the diagram). We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
 $$
