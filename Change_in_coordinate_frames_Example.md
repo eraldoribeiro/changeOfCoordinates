@@ -1,10 +1,44 @@
 # Converting from local to global coordinates
 
 
+$$
+\begin{align}
+T_{01} = 
+\begin{bmatrix}
+   R_{01} & {\bf t}_{01} \\
+   {\bf 0} & 1
+\end{bmatrix}
+   = 
+\begin{bmatrix}  
+    	1 & 0 & 8 \\
+	0 & 1 & 9 \\
+    	0 & 0 & 1
+   \end{bmatrix}.
+\end{align}
+$$
+
+
+
+$$
+\begin{align}
+ T_{01} =
+ \begin{bmatrix}
+    R_{01} & {\bf t}_{01}\\
+    {\bf 0} &  1
+  \end{bmatrix}
+   = 
+  \begin{bmatrix}
+    	1 & 0 & 8\\
+	0 & 1 & 9\\
+    	0 & 0 & 1
+   \end{bmatrix}.
+\end{align}
+$$
+
 
 ## **Example**: Spinning circles at the end of a line segment
 
-Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle ``attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\{0\}$). 
+Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle "attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\{0\}$). 
 
 <img src="./object.png" alt="object" style="zoom:40%;" />
 
@@ -18,8 +52,6 @@ We can solve this problem by performing the following steps:
 2. **Create Local-to-Global transformation matrices**. These are the matrices that convert local coordinates to global coordinates. Local coordinates are convenient for calculations but we need global coordinates in order to render the graphical output of the animation. 
 3. **Create the matrices of the local transformations** (e.g., rotations, scaling) on the points (i.e., object parts) associated to the local coordinate frames. These transformations result in transformed points in local coordinates. 
 4. **Convert the coordinates of the transformed local parts to global coordinates prior to plotting the results.**  Plotting functions, i.e., library functions such as `plot(x,y)` only know how to plot global coordinates. As a result, any point in local coordinates must its coordinates converted to the global frame prior to plotting. 
-
-
 
 ### Step 1: Place local coordinate systems centered at strategic locations
 
@@ -36,24 +68,6 @@ In this choice of configuration, all local frames are just translated with respe
 We create the local-to-global transformation matrices for each local frame. 
 
 1. Transformation ${\mathcal F}\{1\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{01}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{1\}$ w.r.t. frame ${\mathcal F}\{0\}$ which is the global frame. The transformation matrix is given by:
-
-$$
-\begin{align}
- T_{01}=
- \begin{bmatrix}
-    R_{01} & {\bf t}_{01} \\
-    {\bf 0} &  1
- \end{bmatrix}
- =
-\begin{bmatrix}  
-1 & 0 & 8 \\
-0 & 1 & 9 \\
-0 & 0 & 1
-\end{bmatrix}.
-\end{align}
-$$
-
-
 
 $$
 \begin{align}
