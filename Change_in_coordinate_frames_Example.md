@@ -3,7 +3,7 @@
 
 ## **Example**: Spinning circles at the end of a line segment
 
-Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle "attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\\{0\\}$). 
+Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle "attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\{0\}$). 
 
 <img src="./object.png" alt="object" style="zoom:40%;" />
 
@@ -68,10 +68,7 @@ $$
  \end{align}
 $$
 
-
-
-
-There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
+There is no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
 ### Step 3: Create the matrices of the local transformations
 
@@ -79,15 +76,15 @@ We now build the rotation matrices that will govern the motions of the points  $
 
 1. The rotation of blue circle about its local origin:
 
-   $$
-   \begin{align}
-   	R_{\theta} = 
-   	  \begin{bmatrix}   
-       	\sin{\theta} & -\cos\theta\\      
-       	\cos\theta &  \sin\theta 
-      \end{bmatrix}  
-    \end{align}
-   $$
+$$
+\begin{align}
+	R_{\theta} = 
+	  \begin{bmatrix}   
+    	\sin{\theta} & -\cos\theta\\      
+    	\cos\theta &  \sin\theta 
+   \end{bmatrix}  
+ \end{align}
+$$
 
 2. The rotation of pink circle about its local origin:
 
