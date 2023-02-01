@@ -88,16 +88,15 @@ $$
 
 2. The rotation of pink circle about its local origin:
 
-
-   $$
-   \begin{align}
-   	R_{\phi} = 
-   	  \begin{bmatrix}   
-       	\sin{\phi} & -\cos\phi\\      
-       	\cos\phi &  \sin\phi 
-      \end{bmatrix}  
-    \end{align}
-   $$
+$$
+\begin{align}
+	R_{\phi} = 
+	  \begin{bmatrix}   
+    	\sin{\phi} & -\cos\phi\\      
+    	\cos\phi &  \sin\phi 
+   \end{bmatrix}  
+ \end{align}
+$$
 
 ### Numerical examples
 
@@ -114,6 +113,7 @@ $$
    \tilde{\bf p}_{\{1\}}.
  \end{align}
 $$
+
 Note that the rotated point  $\tilde{\bf p}^\prime_{\{1\}}$ is written in terms of its local coordinate system (i.e., frame ${\mathcal F}\{1\}$ ). As a result, the rotated point will not be plotted at its expected location when using library functions such as `plot(x,y)`. Library plotting functions use global (world) coordinates, not local ones. Thus, prior to plotting the rotated point, we must convert its coordinates to global coordinates, i.e.: 
 
 $$
