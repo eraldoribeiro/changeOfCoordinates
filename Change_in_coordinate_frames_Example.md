@@ -100,7 +100,7 @@ $$
 
 ### Numerical examples
 
-Now, let's try to rotate the points to see how the whole works. First, we can rotate the blue circle by an angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{\{1\}} = (5,0)^\mathsf{T}$ in local coordinates (See measurements in the diagram). We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
+Now, let's try to rotate the points to see how the whole works. First, we can rotate the blue circle by an angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{1} = (5,0)^\mathsf{T}$ in local coordinates (See measurements in the diagram). We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
 
 $$
 \begin{align}
