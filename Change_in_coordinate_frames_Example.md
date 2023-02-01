@@ -37,11 +37,10 @@ We create the local-to-global transformation matrices for each local frame.
 $$
 \begin{align}
    T_{01}=
-   R_{\theta} = 
    \begin{bmatrix}
        R_{01}  & {\bf t}_{01} \\
        {\bf 0} &  1
-   \end{bmatrix} 
+   \end{bmatrix} =
    \begin{bmatrix}
          1 & 0 & 8 \\
          0 & 1 & 9 \\
