@@ -49,7 +49,7 @@ $$
  \end{align}
 $$
 
-In the example described in these notes, there is no rotation between frames ${\mathcal F}\{1\}$ and ${\mathcal F}\{0\}$, i.e., $R_{01}=I$. The origin of  ${\mathcal F}\{1\}$ is translated by ${\bf t}_{01} = (8,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
+There is no rotation between frames ${\mathcal F}\{1\}$ and ${\mathcal F}\{0\}$, i.e., $R_{01}=I$. The origin of  ${\mathcal F}\{1\}$ is translated by ${\bf t}_{01} = (8,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
 2. Transformation ${\mathcal F}\{2\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{02}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{2\}$ w.r.t. frame ${\mathcal F}\{0\}$. The transformation matrix is given by:
 
@@ -59,8 +59,7 @@ $$
   \begin{bmatrix}   
     	R_{02} & {\bf t}_{02}       
     	{\bf 0} &  1 
-   \end{bmatrix}  
-   = 
+   \end{bmatrix}  = 
   \begin{bmatrix}   
     	1 & 0 & 18\\    
     	0 & 1 & 9\\      
