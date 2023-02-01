@@ -43,7 +43,7 @@ $$
   \begin{bmatrix}    
     	R_{01} & {\bf t}_{01}\\        
     	{\bf 0} &  1  
-   \end{bmatrix}  
+  \end{bmatrix}  
    = 
   \begin{bmatrix}    
     	1 & 0 & 8\\     
