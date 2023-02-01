@@ -4,27 +4,38 @@
 
 ## **Example**: Spinning circles at the end of a line segment
 
-Consider a horizontal line segment $\overline{AB}$ as depicted in Figure 1. The line segment has a circle at each end, a blue circle and a pink circle. Each circle rotates independently about line endpoints points. The start of the line segment, i.e., point $A$ is located away from the origin of the world coordinate system (i.e., frame ${\mathcal F}\{0\}$). The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. 
+Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle ``attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\{0\}$). 
 
-<img src="../../tutorials/coordinateFrames/object.png" alt="object" style="zoom:40%;" />
+<img src="./object.png" alt="object" style="zoom:40%;" />
 
-**Figure 1**: Object with two rotating parts (i.e., blue and pink circles). The blue circle must rotate around point $A$ while the pink circle must rotate around point $B$. Their frequency of rotation may be different. The world coordinate system is labeled as frame ${\mathcal F}\{0\}$.
+**Figure 1**: Object with two rotating parts (i.e., blue and pink circles). The blue circle rotates around point $A$ while the pink circle rotates around point $B$. Their frequencies of rotation may be different. The world coordinate system is labeled as frame ${\mathcal F}\{0\}$.
 
-#####**Step 1**: 
+Our goal is to create the transformations that will rotate the two circles around their centers of rotation. Once the transformations are at hand, we can use them to create an animation of the entire system in motion. 
 
-Our first step is to choose the best locations and orientations of local coordinate systems for the problem. There can be many different coordinate systems. The ones we will use here will be centered at the points $A$ and $B$ because we want the spheres to rotate around those points. The configuration of local frames shown in Figure 2 is one possibility out of many possible ones. 
+We can solve this problem by performing the following steps: 
 
-<img src="../../tutorials/coordinateFrames/object_systems.png" alt="object_systems" style="zoom:40%;" />
+1. **Place local coordinate systems centered at strategic locations**. In addition to choosing a location, we also choose the best orientation (i.e., pose) of the local coordinate system. 
+2. **Create Local-to-Global transformation matrices**. These are the matrices that convert local coordinates to global coordinates. Local coordinates are convenient for calculations but we need global coordinates in order to render the graphical output of the animation. 
+3. **Create the matrices of the local transformations** (e.g., rotations, scaling) on the points (i.e., object parts) associated to the local coordinate frames. These transformations result in transformed points in local coordinates. 
+4. **Convert the coordinates of the transformed local parts to global coordinates prior to plotting the results.**  Plotting functions, i.e., library functions such as `plot(x,y)` only know how to plot global coordinates. As a result, any point in local coordinates must its coordinates converted to the global frame prior to plotting. 
+
+
+
+#####**Step 1**: Place local coordinate systems centered at strategic locations
+
+Our first step is to choose the best locations and orientations of local coordinate systems that will help us solve the problem. We can create as many coordinate systems as we want. The ones we will use here will be centered at the points $A$ and $B$ because we want the spheres to rotate around those points. The configuration of local frames shown in Figure 2 is one possibility out of many. 
+
+<img src="./object_systems.png" alt="object_systems" style="zoom:40%;" />
 
 **Figure 2**: The object's end points are $A = (8,9)^\mathsf{T}$ and $B = (18,9)^\mathsf{T}$.  Points ${\bf p}$ and ${\bf q}$ are the centers of the blue and pink circles, respectively.
 
-In this choice of configuration, all local frames are just translated with respect to the world-coordinate frame (i.e., no rotation). Depending on the application, the local frames may also be rotated. 
+In this choice of configuration, all local frames are just translated with respect to the world-coordinate frame (i.e., there is no rotation between the frames). Depending on the application, the local frames may also be rotated with respect to the global frame and, sometimes, they also rotated with respect to one another. 
 
-#####**Step 2**: 
+#####**Step 2**: Create the local-to-global transformation matrices
 
 We create the local-to-global transformation matrices for each local frame. 
 
-1. Transformation ${\mathcal F}\{1\} \longrightarrow {\mathcal F}\{0\}$:
+1. Transformation ${\mathcal F}\{1\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{01}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{1\}$ w.r.t. frame ${\mathcal F}\{0\}$ which is the global frame. The transformation matrix is given by:
 
 $$
 \begin{align}
@@ -44,7 +55,7 @@ $$
 
 In the example described in these notes, there is no rotation between frames ${\mathcal F}\{1\}$ and ${\mathcal F}\{0\}$, i.e., $R_{01}=I$. The origin of  ${\mathcal F}\{1\}$ is translated by ${\bf t}_{01} = (8,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
-2. Transformation ${\mathcal F}\{2\} \longrightarrow {\mathcal F}\{0\}$:
+2. Transformation ${\mathcal F}\{2\} \rightarrow {\mathcal F}\{0\}$. It is named $T_{02}$ and describes the pose (i.e., rotation and translation) of local frame ${\mathcal F}\{2\}$ w.r.t. frame ${\mathcal F}\{0\}$. The transformation matrix is given by:
 
 $$
 \begin{align}
@@ -62,13 +73,13 @@ $$
  \end{align}
 $$
 
-There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{1\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
+There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
-#####**Step 3:** 
+#####**Step 3:**  Create the matrices of the local transformations
 
-We build the rotation matrices that will govern the motions of the points  ${\bf p}$ and  ${\bf q}$  in their local coordinate systems. 
+We now build the rotation matrices that will govern the motions of the points  ${\bf p}$ and  ${\bf q}$  in their local coordinate systems. 
 
-1. Rotation of blue circle about its local origin:
+1. The rotation of blue circle about its local origin:
    $$
    \begin{align}
    	R_{\theta} = 
@@ -79,7 +90,7 @@ We build the rotation matrices that will govern the motions of the points  ${\bf
     \end{align}
    $$
 
-2. Rotation of pink circle about its local origin:
+2. The rotation of pink circle about its local origin:
    $$
    \begin{align}
    	R_{\phi} = 
@@ -90,9 +101,9 @@ We build the rotation matrices that will govern the motions of the points  ${\bf
     \end{align}
    $$
 
-#####**Step 4:** 
+#####Numerical examples
 
-Now, let's try some rotations to see how they work. First, we can rotate the blue circle by angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{\{1\}} = (5,0)^\mathsf{T}$ in local coordinates. We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
+Now, let's try to rotate the points to see how the whole works. First, we can rotate the blue circle by an angle $\theta = \pi/4$. To do that, we will apply the rotation to the initial location of ${\bf p}_{\{1\}} = (5,0)^\mathsf{T}$ in local coordinates (See measurements in the diagram). We will write $\tilde{\bf p}_{\{1\}}$ to indicate the homogeneous representation of point  ${\bf p}_{\{1\}}$. The rotation calculation in homogeneous coordinates as follows: 
 $$
 \begin{align}
 	\tilde{\bf p}^\prime_{\{1\}} 
@@ -121,7 +132,7 @@ $$
 	  \underbrace{\begin{bmatrix}    
     	R_{\theta} & {\bf 0}\\        
     	{\bf 0} &  1  
-   \end{bmatrix}}_{\text{local rotation}}  
+   \end{bmatrix}}_{\text{local motion}}  
 	\begin{bmatrix}
 	  x_p \\ 
 	  y_p \\
@@ -180,7 +191,7 @@ $$
 	  \underbrace{\begin{bmatrix}    
     	R_{\phi} & {\bf 0}\\        
     	{\bf 0} &  1  
-   \end{bmatrix}}_{\text{local rotation}}  
+   \end{bmatrix}}_{\text{local motion}}  
 	\begin{bmatrix}
 	  x_q \\ 
 	  y_q \\
