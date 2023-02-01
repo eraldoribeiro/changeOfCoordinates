@@ -37,15 +37,15 @@ We create the local-to-global transformation matrices for each local frame.
 $$
 \begin{align}
  T_{01} =  
- \begin{bmatrix}    
+ \begin{bmatrix}
     R_{01} & {\bf t}_{01} \\
-    {\bf 0} &  1  
+    {\bf 0} &  1
   \end{bmatrix}  
    = 
-  \begin{bmatrix}    
+  \begin{bmatrix}
     	1 & 0 & 8 \\
 	0 & 1 & 9 \\
-    	0 & 0 & 1  
+    	0 & 0 & 1
    \end{bmatrix}.
 \end{align}
 $$
@@ -57,18 +57,23 @@ In the example described in these notes, there is no rotation between frames ${\
 $$
 \begin{align}
 	{T}_{02} =  
-  \begin{bmatrix}    
-    	R_{02} & {\bf t}_{02}\\        
-    	{\bf 0} &  1  
+  \begin{bmatrix}   
+    	R_{02} & {\bf t}_{02}       
+    	{\bf 0} &  1 
    \end{bmatrix}  
    = 
-  \begin{bmatrix}    
-    	1 & 0 & 18\\     
-    	0 & 1 & 9\\        
-    	0 & 0 & 1  
+  \begin{bmatrix}   
+    	1 & 0 & 18\\    
+    	0 & 1 & 9\\      
+    	0 & 0 & 1 
    \end{bmatrix}.
  \end{align}
 $$
+
+
+$$
+$$
+
 
 There is also no rotation between frames ${\mathcal F}\{2\}$ and ${\mathcal F}\{0\}$. The origin of  ${\mathcal F}\{2\}$ is translated by ${\bf t}_{02} = (18,9)^\mathsf{T}$ w.r.t. frame ${\mathcal F}\{0\}$.
 
@@ -80,9 +85,9 @@ We now build the rotation matrices that will govern the motions of the points  $
    $$
    \begin{align}
    	R_{\theta} = 
-   	  \begin{bmatrix}    
-       	\sin{\theta} & -\cos\theta\\        
-       	\cos\theta &  \sin\theta  
+   	  \begin{bmatrix}   
+       	\sin{\theta} & -\cos\theta\\      
+       	\cos\theta &  \sin\theta 
       \end{bmatrix}  
     \end{align}
    $$
@@ -91,9 +96,9 @@ We now build the rotation matrices that will govern the motions of the points  $
    $$
    \begin{align}
    	R_{\phi} = 
-   	  \begin{bmatrix}    
-       	\sin{\phi} & -\cos\phi\\        
-       	\cos\phi &  \sin\phi  
+   	  \begin{bmatrix}   
+       	\sin{\phi} & -\cos\phi\\      
+       	\cos\phi &  \sin\phi 
       \end{bmatrix}  
     \end{align}
    $$
@@ -105,9 +110,9 @@ $$
 \begin{align}
 	\tilde{\bf p}^\prime_{\{1\}} 
 	&= 
-	  \begin{bmatrix}    
-    	R_{\theta} & {\bf 0}\\        
-    	{\bf 0} &  1  
+	  \begin{bmatrix}   
+    	R_{\theta} & {\bf 0}\\      
+    	{\bf 0} &  1 
    \end{bmatrix} 
    \tilde{\bf p}_{\{1\}}.
  \end{align}
@@ -119,16 +124,16 @@ $$
   \begin{bmatrix}    
   x_p^\prime \\     
   y_p^\prime \\    
-  1  
+  1 
   \end{bmatrix}_{\{0\}}
 &=
-	  \underbrace{\begin{bmatrix}          
-	       R_{01} & {\bf t}_{01}\\  
-        {\bf 0} &  1     
-    \end{bmatrix}}_{\text{local-to-global}}  
-	  \underbrace{\begin{bmatrix}    
-    	R_{\theta} & {\bf 0}\\        
-    	{\bf 0} &  1  
+	 \underbrace{\begin{bmatrix}       
+	      R_{01} & {\bf t}_{01}\\ 
+        {\bf 0} &  1   
+    \end{bmatrix}}_{\text{local-to-global}} 
+	  \underbrace{\begin{bmatrix}   
+    	R_{\theta} & {\bf 0}\\      
+    	{\bf 0} &  1 
    \end{bmatrix}}_{\text{local motion}}  
 	\begin{bmatrix}
 	  x_p \\ 
@@ -143,17 +148,17 @@ $$
   \begin{bmatrix}    
   x_p^\prime \\     
   y_p^\prime \\    
-  1  
+  1 
   \end{bmatrix}_{\{0\}}
 &=
-  \begin{bmatrix}          
-  1 & 0 & 8\\           
-  0 & 1 & 9\\              
-  0 & 0 & 1     
-  \end{bmatrix}	  
-  \begin{bmatrix}    
-    \sin(\pi/4) & -\cos(\pi/4)  & 0\\        
-    \cos(\pi/4) & \sin(\pi/4)   & 0 \\
+ \begin{bmatrix}       
+ 1 & 0 & 8\\        
+ 0 & 1 & 9\\         
+ 0 & 0 & 1   
+ \end{bmatrix}	  
+ \begin{bmatrix}   
+    \sin(\pi/4) & -\cos(\pi/4)  & 0\\      
+    \cos(\pi/4) & \sin(\pi/4)  & 0 \\
     	        0 &      0        & 1    
    \end{bmatrix}    
 	\begin{bmatrix}
@@ -161,7 +166,7 @@ $$
 	  0 \\
 	  1
   \end{bmatrix}_{\{1\}}   \notag\\
-&=  
+&= 
 	\begin{bmatrix}
 	  11.5 \\ 
 	  12.5 \\
@@ -178,16 +183,16 @@ $$
   \begin{bmatrix}    
   x_q^\prime \\     
   y_q^\prime \\    
-  1  
+  1 
   \end{bmatrix}_{\{0\}}
 &=
-	  \underbrace{\begin{bmatrix}          
-	       R_{02} & {\bf t}_{02}\\  
-        {\bf 0} &  1     
-    \end{bmatrix}}_{\text{local-to-global}}  
-	  \underbrace{\begin{bmatrix}    
-    	R_{\phi} & {\bf 0}\\        
-    	{\bf 0} &  1  
+	 \underbrace{\begin{bmatrix}       
+	      R_{02} & {\bf t}_{02}\\ 
+        {\bf 0} &  1   
+    \end{bmatrix}}_{\text{local-to-global}} 
+	  \underbrace{\begin{bmatrix}   
+    	R_{\phi} & {\bf 0}\\      
+    	{\bf 0} &  1 
    \end{bmatrix}}_{\text{local motion}}  
 	\begin{bmatrix}
 	  x_q \\ 
@@ -202,24 +207,24 @@ $$
   \begin{bmatrix}    
   x_q^\prime \\     
   y_q^\prime \\    
-  1  
+  1 
   \end{bmatrix}_{\{0\}}
 &=
-  \begin{bmatrix}          
-  1 & 0 & 18\\           
-  0 & 1 & 9\\              
-  0 & 0 & 1     
-  \end{bmatrix}	    
-\begin{bmatrix}        
-	\sin(\pi/3) & -\cos(\pi/3)  & 0\\            
-	\cos(\pi/3) & \sin(\pi/3)   & 0 \\              
-	0 &      0        & 1       
+ \begin{bmatrix}       
+ 1 & 0 & 18\\        
+ 0 & 1 & 9\\         
+ 0 & 0 & 1   
+ \end{bmatrix}	    
+\begin{bmatrix}    
+	\sin(\pi/3) & -\cos(\pi/3)  & 0\\      
+	\cos(\pi/3) & \sin(\pi/3)  & 0 \\          
+	0 &    0     & 1    
 \end{bmatrix}	\begin{bmatrix}
 	  2 \\ 
 	  0 \\
 	  1
   \end{bmatrix}_{\{2\}}   \notag\\
-&=  
+&= 
 	\begin{bmatrix}
 	  19.7 \\ 
 	  10.0 \\
