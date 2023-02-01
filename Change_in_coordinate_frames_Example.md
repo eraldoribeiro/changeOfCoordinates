@@ -21,7 +21,7 @@ We can solve this problem by performing the following steps:
 
 
 
-##### **Step 1**: Place local coordinate systems centered at strategic locations
+### Step 1: Place local coordinate systems centered at strategic locations
 
 Our first step is to choose the best locations and orientations of local coordinate systems that will help us solve the problem. We can create as many coordinate systems as we want. The ones we will use here will be centered at the points $A$ and $B$ because we want the spheres to rotate around those points. The configuration of local frames shown in Figure 2 is one possibility out of many. 
 
