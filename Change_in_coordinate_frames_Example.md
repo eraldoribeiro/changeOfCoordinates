@@ -1,41 +1,6 @@
 # Converting from local to global coordinates
 
 
-$$
-\begin{align}
-T_{01} = 
-\begin{bmatrix}
-   R_{01} & {\bf t}_{01} \\
-   {\bf 0} & 1
-\end{bmatrix}
-   = 
-\begin{bmatrix}  
-    	1 & 0 & 8 \\
-	0 & 1 & 9 \\
-    	0 & 0 & 1
-   \end{bmatrix}.
-\end{align}
-$$
-
-
-
-$$
-\begin{align}
- T_{01} =
- \begin{bmatrix}
-    R_{01} & {\bf t}_{01}\\
-    {\bf 0} &  1
-  \end{bmatrix}
-   = 
-  \begin{bmatrix}
-    	1 & 0 & 8\\
-	0 & 1 & 9\\
-    	0 & 0 & 1
-   \end{bmatrix}.
-\end{align}
-$$
-
-
 ## **Example**: Spinning circles at the end of a line segment
 
 Consider a horizontal line segment $\overline{AB}$ as the one shown in Figure 1. The line segment has a circle "attached" to points $A$ and $B$. The blue circle rotates around $A$ while the pink circle rotates around $B$. The rotation radius of the blue circle is 5 and the rotation radius of the pink circle is 2. Point $A$ (i.e., the start of the line segment) is located away from the global origin (i.e., frame ${\mathcal F}\{0\}$). 
