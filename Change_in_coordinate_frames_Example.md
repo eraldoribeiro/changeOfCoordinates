@@ -39,7 +39,7 @@ We create the local-to-global transformation matrices for each local frame.
 
 $$
 \begin{align}
-	{T}_{01} =  
+ {T}_{01} =  
   \begin{bmatrix}    
     	R_{01} & {\bf t}_{01}\\        
     	{\bf 0} &  1  
