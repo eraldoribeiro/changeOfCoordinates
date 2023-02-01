@@ -57,7 +57,7 @@ $$
 \begin{align}
 	{T}_{02} =  
   \begin{bmatrix}   
-    	R_{02} & {\bf t}_{02}       
+    	R_{02} & {\bf t}_{02}\\
     	{\bf 0} &  1 
    \end{bmatrix}  = 
   \begin{bmatrix}   
