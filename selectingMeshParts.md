@@ -45,7 +45,7 @@ plt.add_cutter_tool(s, mode='box',invert=True) #modes= sphere, plane, box
 
 Because the shape of the body is more complex and does not seem to fit in a single bounding box, we can repeat the clipping process multiple times until we have the correct mesh. Here, just call the program repeatedly and keep re-opening the file `clipped.vtk` until getting the right shape. Make sure to change the file name inside the program to `clipped.vtk`. 
 
-![image-20230204171037544](../../../../Library/Application Support/typora-user-images/image-20230204171037544.png)
+![image-20230204171037544](main_body.png)
 
 **Figure 3**: Selected the main body. 
 
