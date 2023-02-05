@@ -14,6 +14,5 @@ tailRotorMesh = Mesh("./tail_rotor.vtk").c("blue")
 # Show everything 
 plt = show([mainBodyMesh, topRotorMesh, tailRotorMesh], __doc__, bg='black', bg2='bb', interactive=True, axes=1, viewup='z')
 
-
 plt.close()
 
