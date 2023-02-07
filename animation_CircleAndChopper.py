@@ -65,6 +65,10 @@ def getNewPosition_yellowPoint(p: np.ndarray, angle: float, T_01: np.ndarray) ->
     # This is the new location of the yellow point in global coordinates
     p_new = T_Motion @ p_tilde
     
+    
+    TopRotorPtsNew = (T_01 @ R_z @ T_10) @ TopRotorPtsOld
+    TailRotorPtsNew = (T_02 @ R_x @ T_20) @ TailRotorPtsOld
+    
     # Convert from homogeneous to Cartesian before returning     
     return p_new[:3] 
 
@@ -104,7 +108,7 @@ def main():
     T_01 = np.array(
         [
             [1.0, 0.0, 0.0, -40],
-            [0.0, 1.0, 0.0, 0],
+            [0.0, 1.0, 0.0,   0],
             [0.0, 0.0, 1.0, -20],
             [0.0, 0.0, 0.0, 1.0],
         ]
@@ -137,7 +141,7 @@ def main():
         p_new = getNewPosition_yellowPoint(p, angle, T_01)
 
         # Update object's position (leave a trail behind, just for fun!)
-        yellowPoint.pos(p_new).add_trail(n=200)
+        yellowPoint.pos(p_new).add_trail(n=20)
 
         # Display scene and objects
         plt.pop().show(
