@@ -8,8 +8,8 @@ ESC: terminates the program.
 """
 from vedo import *
 import os
-import time          
-
+import time 
+import numpy as np
 
 
 def RotationAboutY(theta):
@@ -33,7 +33,8 @@ def getNewPosition_yellowPoint(p: np.ndarray, angle: float, T_01: np.ndarray) ->
     Args:
       p:     Current position (3x1 np.ndarray) 
       angle: Rotation angle in radians (float)
-      T_01:  Transform between the local frame F{1} to the global frame F{0}  (4x4 np.ndarray)
+      T_01:  Transform between the local frame F{1} to the global 
+             frame F{0}  (4x4 np.ndarray)
 
     Returns:
       newPosition: Coordinates of the new location of p (3x1 np.ndarray) 
@@ -65,99 +66,87 @@ def getNewPosition_yellowPoint(p: np.ndarray, angle: float, T_01: np.ndarray) ->
     # This is the new location of the yellow point in global coordinates
     p_new = T_Motion @ p_tilde
     
-    
-    TopRotorPtsNew = (T_01 @ R_z @ T_10) @ TopRotorPtsOld
-    TailRotorPtsNew = (T_02 @ R_x @ T_20) @ TailRotorPtsOld
-    
+        
     # Convert from homogeneous to Cartesian before returning     
     return p_new[:3] 
 
 
-def main():
-    """
-    main function       
+def loop_func(event):
+
+    global p
     
-    """
-        
-    # Read mesh files of each part, and color-label them
-    mainBodyMesh = Mesh("./main_body.vtk").c("white")
-    topRotorMesh = Mesh("./top_rotor.vtk").c("red")
-    tailRotorMesh = Mesh("./tail_rotor.vtk").c("blue")
+    # Get updated position of point/object 
+    p = getNewPosition_yellowPoint(p, theta, T_01)
 
-    # Create a local coordinade frame (approx.) centered at the front of the chopper.
-    # This local frame is just translated w.r.t. to the global frame. Local frame
-    # will govern the motion of the yellow point. The motion is just a
-    # rotation about the local y-axis.
+    # Update object's position (leave a trail behind, just for fun!)
+    yellowPoint.pos(p)
 
-    # Create a line to visualize the local y-axis
-    startPoint, endPoint = (-40, 0, -20), (-40, -20, -20)
-    line = Line(startPoint, endPoint).lw(5).c((0, 1, 0))
+    # Update the scene 
+    plt.render()
 
-    # Create a point to provide an example of animation. Point
-    # is off-set along the x-axis to show rotation about the local y-axis.
-    p = np.array([[-30.0], [-10.0], [-20.0]])
-
-    print("\nThe point in global coordinates = ")
-    print(p)
-
-    # Create a Vedo point at location p
-    yellowPoint = Point(p, c="y")
-
-    # Transformation matrix from local frame to global (local frame is F{1}).
-    # I am centering the frame at the start point of the green line, i.e., startPoint
-    T_01 = np.array(
-        [
-            [1.0, 0.0, 0.0, -40],
-            [0.0, 1.0, 0.0,   0],
-            [0.0, 0.0, 1.0, -20],
-            [0.0, 0.0, 0.0, 1.0],
-        ]
-    )
-
-    print("\nTransformatiin from local frame F{1} to global frame F{0}:\nT_01 = ")
-    print(T_01)
-
-    print("\n")
-
-    # Get new position of point/object 
-    theta = np.pi / 6
-
-    # Show everything
-    plt = show(
-        [mainBodyMesh, topRotorMesh, tailRotorMesh, yellowPoint, line],
-        __doc__,
-        bg="black",
-        bg2="bb",
-        interactive=False,
-        axes=1,
-        viewup="z",
-    )
+#--------------------------------------------------------------------------
+#  Begin script 
+#--------------------------------------------------------------------------
 
 
-    # "Animation" loop (manual animation)
-    for angle in np.arange(0, 4 * np.pi, np.pi / 20):
+# Read mesh files of each part, and color-label them
+mainBodyMesh = Mesh("./main_body.vtk").c("white")
+topRotorMesh = Mesh("./top_rotor.vtk").c("red")
+tailRotorMesh = Mesh("./tail_rotor.vtk").c("blue")
 
-        # Get updated position of point/object 
-        p_new = getNewPosition_yellowPoint(p, angle, T_01)
+# Create a local coordinade frame (approx.) centered at the front of the chopper.
+# This local frame is just translated w.r.t. to the global frame. Local frame
+# will govern the motion of the yellow point. The motion is just a
+# rotation about the local y-axis.
 
-        # Update object's position (leave a trail behind, just for fun!)
-        yellowPoint.pos(p_new).add_trail(n=20)
+# Create a line to visualize the local y-axis
+startPoint, endPoint = (-40, 0, -20), (-40, -20, -20)
+line = Line(startPoint, endPoint).lw(5).c((0, 1, 0))
 
-        # Display scene and objects
-        plt.pop().show(
-            [mainBodyMesh, topRotorMesh, tailRotorMesh, yellowPoint, line],
-            __doc__,
-            bg= "black",
-            bg2= "bb",
-            viewup= "z",
-            interactive = True
-        )
+# Create a point to provide an example of animation. Point
+# is off-set along the x-axis to show rotation about the local y-axis.
+p = np.array([[-30.0], [-10.0], [-20.0]])
+print("\nThe start position of the rotating point \n in global coordinates = ")
+print(p)
 
-    plt.close()
+# Create a Vedo point at location p
+yellowPoint = Point(p, c="y")     
 
-    
 
-if __name__=="__main__":
-    main()
-    
+# Transformation matrix from local frame to global (local frame is F{1}).
+# I am centering the frame at the start point of the green line, i.e., startPoint
+T_01 = np.array(
+    [
+        [1.0, 0.0, 0.0, -40],
+        [0.0, 1.0, 0.0,   0],
+        [0.0, 0.0, 1.0, -20],
+        [0.0, 0.0, 0.0, 1.0],
+    ]
+)
+
+print("\nTransformatiin from local frame F{1} to global frame F{0}:\nT_01 = ")
+print(T_01)
+print("\n")
+
+# Rotation step
+theta = np.pi/20
+
+
+# Build the graphical scene with all objects and axes
+plt = Plotter(size=(1050, 600))
+plt += [mainBodyMesh, topRotorMesh, tailRotorMesh, yellowPoint, line, __doc__]
+plt.background("black", "w").add_global_axes(axtype=1).look_at(plane='yz')
+
+# Link the callback function and create/activate the timer
+plt.add_callback("timer", loop_func)
+plt.timer_callback("create", dt=50)
+
+# Render the first frame (iteration=0) of the animation
+plt.show().close()
+
+#--------------------------------------------------------------------------
+#  End script 
+#--------------------------------------------------------------------------
+     
+   
     
