@@ -20,7 +20,7 @@ Once the parts are labeled or selected, you will assign a local coordinate frame
 
 #### Submission instructions
 
-#####What to submit: 
+##### What to submit: 
 
 - **Submit a link to your animation** as a link to a cloud-based drive (e.g., Google Drive, or a link to a video service (e.g., Youtube). Please, do not submit the actual video file as they tend to be large in size. 
 - **Submit the code**. Submit the code that you wrote to create the animation (e.g., Python script, Jupyter notebook, Matlab script). Submit the entire code (except for external libraries).  <u>The submission is done via GitHub by pushing the relevant files to the assignment's GitHub repository</u>. 
