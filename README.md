@@ -7,3 +7,4 @@ Highlights:
 - [Numerical example of converting coordinates between frames](https://htmlpreview.github.io/?https://github.com/eraldoribeiro/changeOfCoordinates/blob/main/Change_in_coordinate_frames_Example.html)
 - [Assignment on animating parts of a cloud of points](https://htmlpreview.github.io/?https://github.com/eraldoribeiro/changeOfCoordinates/blob/main/The_helicopter_animation_assignment.html)
 - [Example Python script that saves an animation to a video file](https://github.com/eraldoribeiro/changeOfCoordinates/blob/main/animation_CircleAndChopperMakeVideo.py)
+- [Script for cutting a mesh into parts (script needs to be changed to fit the cutting goal)](https://github.com/eraldoribeiro/changeOfCoordinates/blob/main/mesh_cutter.py)
