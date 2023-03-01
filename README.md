@@ -1,10 +1,6 @@
 # changeOfCoordinates
 Notes on changing coordinate frames
 
+Highlights:
 
-Markdown version not rendering correctly. 
-Visualize HTML version instead: 
-
-https://htmlpreview.github.io/?https://github.com/eraldoribeiro/changeOfCoordinates/blob/main/Change_in_coordinate_frames_Example.html
-
-
+- [Notes on change-of-frame representation and transformations]()
