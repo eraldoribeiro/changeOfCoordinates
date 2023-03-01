@@ -83,6 +83,10 @@ def loop_func(event):
 
     # Update the scene 
     plt.render()
+    
+    video.add_frame()                  # add individual frame
+
+    
 
 #--------------------------------------------------------------------------
 #  Begin script 
@@ -131,6 +135,17 @@ print("\n")
 # Rotation step
 theta = np.pi/20
 
+# Open a video file and force it to last 3 seconds in total. 
+# Creating a tmp file because the Vedo's video function creates 
+# a video that might not show in all players. So, we will call 
+# ffmpeg ourselves to modify the file to play in more players. 
+# See os.system() call at the end of this script.
+video = Video("tmp.mp4", 
+#              duration=4, 
+              backend='ffmpeg', 
+              fps = 24
+             ) 
+
 
 # Build the graphical scene with all objects and axes
 plt = Plotter(size=(1050, 600))
@@ -143,6 +158,12 @@ plt.timer_callback("create", dt=50)
 
 # Render 
 plt.show().close()
+
+video.close()                         # merge all the recorded frames
+
+# Convert the video file spider.mp4 to play on a wider range of video players 
+os.system("ffmpeg -i tmp.mp4 -pix_fmt yuv420p animation.mp4")
+os.system("rm tmp.mp4")
 
 #--------------------------------------------------------------------------
 #  End script 

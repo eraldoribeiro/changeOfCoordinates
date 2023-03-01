@@ -16,7 +16,7 @@ In this basis, we can write the vector as ${\bf x} = x {\bf i} + y {\bf j}$, whi
 
 Sometimes, it is convenient for us to represent a vector with respect to a different frame of reference. To see how this works, let us represent ${\bf x}$ with respect to another basis, say $\left\{{\bf u},{\bf v}\right\}$. To do that, we write ${\bf x}$ as a linear combination of the new basis, i.e.,  ${\bf x} = u {\bf u} + v {\bf v}$, with $u,v\in\R$.  In this case, scalars  $u$ and $v$ are the coordinates of ${\bf x}$ with respect to the basis $\left\{{\bf u},{\bf v}\right\}$. For simplicity, we assume that the basis is formed by unit vectors (i.e., normalized vectors). Figure 2 shows vector ${\bf x}$  and the two bases, $\left\{{\bf i},{\bf j}\right\}$ and $\left\{{\bf u},{\bf v}\right\}$. 
 
-<img src="image-20220216184025808.png" alt="image-20220216184025808" style="zoom:80%;" />
+<img src="xyuv_vector.png" style="zoom:80%;" />
 
 **Figure 2**: A vector ${\bf x}$ represented with respect to two different coordinate frames (i.e., bases). In the standard basis, ${\bf x = (2,3)^\mathsf{T}}$. In the $\left\{{\bf u},{\bf v}\right\}$ basis,  ${\bf x = (0,3)^\mathsf{T}}$. In the new basis, the value of the first coordinate vanishes. In some applications, it might be easier to work vectors given in the $\left\{{\bf u},{\bf v}\right\}$ basis than vectors given in the  $\left\{{\bf i},{\bf j}\right\}$ basis (e.g., a set of points lying along the ${\bf u}$ direction would have their representation reduced from 2-D to 1-D).
 
@@ -184,16 +184,16 @@ Using this framework, we can go back and forth between coordinate systems.
 An interesting and useful way to visualize the change of basis is to see the change-of-basis matrix as a transformation of the basis vectors, and that each basis induce its own coordinate system[^1]. As an example, consider the standard basis vectors in $\R^2$, which we will denote as $\left\{{\bf e}_1,{\bf e}_2\right\}$, and another basis $\left\{{\bf e}_1^\prime,{\bf e}_2^\prime\right\}$ which is a transformed version of the standard basis such that:
 $$
 \begin{align}
-{\bf e}_1^\prime &= 2\,{\bf e}_1 \notag\\
+{\bf e}_1^\prime &= {2}\,{\bf e}_1 \notag\\
 {\bf e}_2^\prime &= -{\bf e}_1 + 4\,{\bf e}_2
 \label{eq_basis1}
 \end{align}
 $$
 As Equation $\ref{eq_basis1}$ shows, basis $\left\{{\bf e}_1^\prime,{\bf e}_2^\prime\right\}$ is written in terms of $\left\{{\bf e}_1,{\bf e}_2\right\}$. Figure 3 shows the two bases. 
 
-![image-20220216222834768](image-20220216222834768.png)
+![](bases.png)
 
-​							**Figure 3**: The two different basis: $\left\{{\bf e}_1^\prime,{\bf e}_2^\prime\right\}$ and $\left\{{\bf e}_1,{\bf e}_2\right\}$. 
+​							**Figure 3**: Two different basis: $\left\{{\bf e}_1^\prime,{\bf e}_2^\prime\right\}$ and $\left\{{\bf e}_1,{\bf e}_2\right\}$. 
 
 
 
@@ -218,22 +218,22 @@ $$
 	\end{bmatrix}
 	= 
  		\begin{bmatrix}
-	2 & -1\\
+	{2} & -1\\
 	0  &  4
 	\end{bmatrix}
 	\end{align}
 $$
-![image-20220213190029420](image-20220213190029420.png)
+![](w_transformed.png)
 
-​																**Figure 4**: A vector ${\bf w}$ and its transformed version ${\bf w}^\prime$.
+​										**Figure 4**: A vector ${\bf w}$ and its transformed version ${\bf w}^\prime$.
 
  
 
 We can also see that each basis induces its own coordinate system. Figure 5 illustrates the concept.  
 
-![image-20220213190115673](image-20220213190115673.png)
+![](w_inducedGrid.png)
 
-​																**Figure 5**: Each basis induces its own coordinate system. 
+​												**Figure 5**: Each basis induces its own coordinate system. 
 
 
 
@@ -241,7 +241,7 @@ See how the standard basis vectors, when transformed by $T$, are stretched and r
 
 However, from the point of view of change of basis, we want to consider that the vector remains the same but it is its representation that changes. To see how this works and how it relates to the transformation $T$, let us focus our attention on the vector ${\bf w}^\prime$ (Figure 5, right). We will rename ${\bf w}^\prime$as ${\bf v}$. Its two representations are show in Figure 6. 
 
-![image-20220213191108413](image-20220213191108413.png)
+![3](two_coordSystems.png)
 
 **Figure 6**: Each basis induces its own coordinate system. When considering the change of basis, the vector remains the same while its representation changes from basis to basis. 
 
@@ -446,7 +446,7 @@ $$
 
 In this case, the origin changes under the transformation and this violates the linearity assumption.   Because the transformation is not linear, it cannot be represented by a matrix. However, we can make progress by converting the transformation and the points to homogeneous coordinates. The overall concept of change-of-coordinate matrix remains the same as described in the previous sections. In addition, the transformation in homogenous coordinates preserves the same matrix form as in the case of linear transformations with the exception that translation of the origin is also taking into account. Figure 7 shows a 2-D point with its coordinates written with respect to two different coordinates systems. 
 
-![image-20220220152852825](image-20220220152852825.png)
+![](p_two_frames.png)
 
 **Figure 7**: Point ${\bf p}\in \R^2$ represented in terms of $\left(x,y\right)$ coordinates and in terms of $\left(u,v\right)$ coordinates. Here,  ${\bf p}_{xy} = \left(2,3\right)^\mathsf{T}$ and    ${\bf p}_{uv} = \left(0,0\right)^\mathsf{T}$. The transformation between the two representation is not linear and cannot be represented as a single matrix in two-dimensions. However, a single matrix form is available if the points and transformation are converted to homogeneous coordinates. 
 
